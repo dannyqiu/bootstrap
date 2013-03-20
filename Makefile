@@ -6,6 +6,18 @@ DATE=$(shell date +%I:%M%p)
 CHECK=\033[32m✔\033[39m
 HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
 
+.PHONY: stuykc
+
+#
+# REPLACES OLD CSS AND JS FILES WITH NEWLY BUILT ONES
+# ONLY RUN IN THE bootstrap SUBMODULE!!!
+#
+stuykc: bootstrap
+	mv bootstrap/css/bootstrap.min.css ../css/
+	mv bootstrap/css/bootstrap-responsive.min.css ../css/
+	mv bootstrap/js/bootstrap.min.js ../js/
+	mv bootstrap/img/* ../img/
+	rm -r bootstrap
 
 #
 # BUILD DOCS
