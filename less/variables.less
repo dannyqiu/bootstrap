@@ -7,6 +7,10 @@
 // --------------------------------------------------
 
 
+// Custom Colors
+// -------------------------
+@kcyellow:              #ffea00;
+
 // Grays
 // -------------------------
 @black:                 #000;
@@ -177,20 +181,20 @@
 
 // Navbar
 // -------------------------
-@navbarCollapseWidth:             979px;
+@navbarCollapseWidth:             767px;
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
 @navbarHeight:                    40px;
 @navbarBackgroundHighlight:       #ffffff;
-@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
-@navbarBorder:                    darken(@navbarBackground, 12%);
+@navbarBackground:                @blueDark;
+@navbarBorder:                    @blue; 
 
 @navbarText:                      #777;
-@navbarLinkColor:                 #777;
-@navbarLinkColorHover:            @grayDark;
-@navbarLinkColorActive:           @gray;
+@navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @kcyellow; 
+@navbarLinkColorActive:           @black; 
 @navbarLinkBackgroundHover:       transparent;
-@navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
+@navbarLinkBackgroundActive:      @blue; 
 
 @navbarBrandColor:                @navbarLinkColor;
 
