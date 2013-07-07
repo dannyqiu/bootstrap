@@ -13,10 +13,9 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # ONLY RUN IN THE bootstrap SUBMODULE!!!
 #
 stuykc: bootstrap
-	mv bootstrap/css/bootstrap.min.css ../css/
-	mv bootstrap/css/bootstrap-responsive.min.css ../css/
-	mv bootstrap/js/bootstrap.min.js ../js/
-	mv bootstrap/img/* ../img/
+	mv bootstrap/css/bootstrap.min.css ../app/static/
+	mv bootstrap/css/bootstrap-responsive.min.css ../app/static/
+	mv bootstrap/js/bootstrap.min.js ../app/static/
 	rm -r bootstrap
 
 #
