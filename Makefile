@@ -16,6 +16,8 @@ stuykc: bootstrap
 	mv bootstrap/css/bootstrap.min.css ../photos/static/css/
 	mv bootstrap/css/bootstrap-responsive.min.css ../photos/static/css/
 	mv bootstrap/js/bootstrap.min.js ../photos/static/js/
+	mv bootstrap/img/glyphicons-halflings.png ../photos/static/img/
+	mv bootstrap/img/glyphicons-halflings-white.png ../photos/static/img/
 	rm -r bootstrap
 
 #
