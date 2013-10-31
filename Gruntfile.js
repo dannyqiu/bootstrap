@@ -107,7 +107,27 @@ module.exports = function(grunt) {
         expand: true,
         src: ["fonts/*"],
         dest: 'dist/'
-      }
+      },
+      stuykc: {
+        files: [{
+          expand: true,
+          cwd: 'dist/css',
+          src: 'bootstrap*.min.css',
+          dest: '../css/'
+        },
+        {
+          expand: true,
+          cwd: 'dist/js',
+          src: 'bootstrap.min.js',
+          dest: '../js'
+        },
+        {
+          expand: true,
+          cwd: 'dist/fonts/',
+          src: '*',
+          dest: '../fonts/'
+        }]
+      } 
     },
 
     qunit: {
@@ -195,13 +215,16 @@ module.exports = function(grunt) {
   grunt.registerTask('dist-css', ['recess']);
 
   // Fonts distribution task.
-  grunt.registerTask('dist-fonts', ['copy']);
+  grunt.registerTask('dist-fonts', ['copy:fonts']);
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean', 'dist-css', 'dist-fonts', 'dist-js']);
 
+  // Move necessary files to website.
+  grunt.registerTask('stuykc', ['copy:stuykc']);
+
   // Default task.
-  grunt.registerTask('default', ['test', 'dist', 'build-customizer']);
+  grunt.registerTask('default', ['test', 'dist', 'build-customizer', 'stuykc']);
 
   // task for building customizer
   grunt.registerTask('build-customizer', 'Add scripts/less files to customizer.', function () {
