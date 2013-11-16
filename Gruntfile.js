@@ -176,6 +176,10 @@ module.exports = function(grunt) {
       recess: {
         files: 'less/*.less',
         tasks: ['recess']
+      },
+      copy: {
+        files: ['dist/css/bootstrap*.min.css', 'dist/js/bootstrap.min.js', 'dist/fonts/*'],
+        tasks: ['copy:stuykc']
       }
     },
 
