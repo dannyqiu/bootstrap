@@ -16,8 +16,8 @@
   "scripts": {
     "test": "grunt test"
   },
-  "style": "./dist/css/bootstrap.css",
-  "less": "./less/bootstrap.less",
+  "style": "dist/css/bootstrap.css",
+  "less": "less/bootstrap.less",
   "repository": {
     "type": "git",
     "url": "https://github.com/twbs/bootstrap.git"
@@ -34,6 +34,7 @@
     "canonical-json": "~0.0.4",
     "css-flip": "~0.3.0",
     "grunt": "~0.4.2",
+    "grunt-autoprefixer": "~0.7.2",
     "grunt-banner": "~0.2.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
@@ -47,8 +48,8 @@
     "grunt-contrib-qunit": "~0.4.0",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-css-flip": "^0.1.0",
     "grunt-csscomb": "~2.0.1",
+    "grunt-css-flip": "^0.1.0",
     "grunt-exec": "~0.4.5",
     "grunt-html-validation": "~0.1.13",
     "grunt-jekyll": "~0.4.1",
@@ -57,7 +58,10 @@
     "grunt-sed": "~0.1.1",
     "load-grunt-tasks": "~0.4.0",
     "markdown": "~0.5.0",
-    "css-flip": "~0.3.0"
+    "time-grunt": "~0.2.10"
+  },
+  "engines": {
+    "node": "~0.10.1"
   },
   "jspm": {
     "main": "js/bootstrap",
