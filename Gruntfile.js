@@ -56,7 +56,7 @@ module.exports = function (grunt) {
         src: 'js/tests/unit/*.js'
       },
       assets: {
-        src: 'docs/assets/js/src/*.js'
+        src: 'docs/assets/js/_src/*.js'
       }
     },
 
@@ -78,6 +78,9 @@ module.exports = function (grunt) {
         src: '<%= jshint.test.src %>'
       },
       assets: {
+        options: {
+          requireCamelCaseOrUpperCaseIdentifiers: null
+        },
         src: '<%= jshint.assets.src %>'
       }
     },
@@ -107,9 +110,6 @@ module.exports = function (grunt) {
     },
 
     uglify: {
-      options: {
-        report: 'min'
-      },
       bootstrap: {
         options: {
           banner: '<%= banner %>'
@@ -122,13 +122,13 @@ module.exports = function (grunt) {
           preserveComments: 'some'
         },
         src: [
-          'docs/assets/js/vendor/less.min.js',
-          'docs/assets/js/vendor/jszip.min.js',
-          'docs/assets/js/vendor/uglify.min.js',
-          'docs/assets/js/vendor/blob.js',
-          'docs/assets/js/vendor/filesaver.js',
+          'docs/assets/js/_vendor/less.min.js',
+          'docs/assets/js/_vendor/jszip.min.js',
+          'docs/assets/js/_vendor/uglify.min.js',
+          'docs/assets/js/_vendor/blob.js',
+          'docs/assets/js/_vendor/filesaver.js',
           'docs/assets/js/raw-files.min.js',
-          'docs/assets/js/src/customizer.js'
+          'docs/assets/js/_src/customizer.js'
         ],
         dest: 'docs/assets/js/customize.min.js'
       },
@@ -137,8 +137,8 @@ module.exports = function (grunt) {
           preserveComments: 'some'
         },
         src: [
-          'docs/assets/js/vendor/holder.js',
-          'docs/assets/js/src/application.js'
+          'docs/assets/js/_vendor/holder.js',
+          'docs/assets/js/_src/application.js'
         ],
         dest: 'docs/assets/js/docs.min.js'
       }
@@ -178,8 +178,7 @@ module.exports = function (grunt) {
       },
       minify: {
         options: {
-          cleancss: true,
-          report: 'min'
+          cleancss: true
         },
         files: {
           'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css',
@@ -206,7 +205,7 @@ module.exports = function (grunt) {
         src: 'dist/css/<%= pkg.name %>-theme.css'
       },
       docs: {
-        src: 'docs/assets/css/docs.css'
+        src: 'docs/assets/css/_src/docs.css'
       },
       examples: {
         expand: true,
@@ -216,7 +215,7 @@ module.exports = function (grunt) {
       }
     },
 
-    css_flip: {
+    cssflip: {
       rtl: {
         files: {
           'dist/css/<%= pkg.name %>-rtl.css': 'dist/css/<%= pkg.name %>.css'
@@ -240,42 +239,32 @@ module.exports = function (grunt) {
           ids: false,
           'overqualified-elements': false
         },
-        src: 'docs/assets/css/src/docs.css'
+        src: 'docs/assets/css/_src/docs.css'
       }
     },
 
     cssmin: {
-      compress: {
-        options: {
-          keepSpecialComments: '*',
-          noAdvanced: true, // turn advanced optimizations off until the issue is fixed in clean-css
-          report: 'min',
-          compatibility: 'ie8'
-        },
+      options: {
+        compatibility: 'ie8',
+        keepSpecialComments: '*',
+        noAdvanced: true // turn advanced optimizations off until the issue is fixed in clean-css
+      },
+      docs: {
         src: [
-          'docs/assets/css/src/docs.css',
-          'docs/assets/css/src/pygments-manni.css'
+          'docs/assets/css/_src/docs.css',
+          'docs/assets/css/_src/pygments-manni.css'
         ],
         dest: 'docs/assets/css/docs.min.css'
       }
     },
 
     usebanner: {
-      dist: {
-        options: {
-          position: 'top',
-          banner: '<%= banner %>'
-        },
-        files: {
-          src: [
-            'dist/css/<%= pkg.name %>.css',
-            'dist/css/<%= pkg.name %>-rtl.css',
-            'dist/css/<%= pkg.name %>.min.css',
-            'dist/css/<%= pkg.name %>-rtl.min.css',
-            'dist/css/<%= pkg.name %>-theme.css',
-            'dist/css/<%= pkg.name %>-theme.min.css'
-          ]
-        }
+      options: {
+        position: 'top',
+        banner: '<%= banner %>'
+      },
+      files: {
+        src: 'dist/css/*.css'
       }
     },
 
@@ -284,11 +273,10 @@ module.exports = function (grunt) {
         config: 'less/.csscomb.json'
       },
       dist: {
-        files: {
-          'dist/css/<%= pkg.name %>.css': 'dist/css/<%= pkg.name %>.css',
-          'dist/css/<%= pkg.name %>-rtl.css': 'dist/css/<%= pkg.name %>-rtl.css',
-          'dist/css/<%= pkg.name %>-theme.css': 'dist/css/<%= pkg.name %>-theme.css'
-        }
+        expand: true,
+        cwd: 'dist/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/css/'
       },
       examples: {
         expand: true,
@@ -298,7 +286,7 @@ module.exports = function (grunt) {
       },
       docs: {
         files: {
-          'docs/assets/css/src/docs.css': 'docs/assets/css/src/docs.css'
+          'docs/assets/css/_src/docs.css': 'docs/assets/css/_src/docs.css'
         }
       }
     },
@@ -366,8 +354,8 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'docs/_includes/customizer-variables.html': 'docs/jade/customizer-variables.jade',
-          'docs/_includes/nav-customize.html': 'docs/jade/customizer-nav.jade'
+          'docs/_includes/customizer-variables.html': 'docs/_jade/customizer-variables.jade',
+          'docs/_includes/nav/customize.html': 'docs/_jade/customizer-nav.jade'
         }
       }
     },
@@ -424,7 +412,7 @@ module.exports = function (grunt) {
           build: process.env.TRAVIS_JOB_ID,
           concurrency: 10,
           urls: ['http://127.0.0.1:3000/js/tests/index.html'],
-          browsers: grunt.file.readYAML('test-infra/sauce_browsers.yml')
+          browsers: grunt.file.readYAML('grunt/sauce_browsers.yml')
         }
       }
     },
@@ -471,7 +459,7 @@ module.exports = function (grunt) {
 
   // CSS distribution task.
   grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
-  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer', 'css_flip', 'csscomb', 'less:minify', 'cssmin', 'usebanner']);
+  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer', 'cssflip', 'usebanner', 'csscomb', 'less:minify', 'cssmin']);
 
   // Fonts distribution task.
   grunt.registerTask('dist-fonts', ['copy:fonts']);
@@ -493,14 +481,14 @@ module.exports = function (grunt) {
   // This can be overzealous, so its changes should always be manually reviewed!
   grunt.registerTask('change-version-number', 'sed');
 
-  grunt.registerTask('build-glyphicons-data', generateGlyphiconsData);
+  grunt.registerTask('build-glyphicons-data', function () { generateGlyphiconsData.call(this, grunt); });
 
   // task for building customizer
   grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
   grunt.registerTask('build-customizer-html', 'jade');
   grunt.registerTask('build-raw-files', 'Add scripts/less files to customizer.', function () {
     var banner = grunt.template.process('<%= banner %>');
-    generateRawFiles(banner);
+    generateRawFiles(grunt, banner);
   });
 
   // Task for updating the npm packages used by the Travis build.
